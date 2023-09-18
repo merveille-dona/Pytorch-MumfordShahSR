@@ -34,18 +34,18 @@ def save_config(config: dict, path: pathlib.Path) -> None:
 
 def train_from_config(
         config: dict, 
-        parent_output: pathlib.Path('.')
+        train_folder: pathlib.Path('.')
 ) -> None :
     # # Read config
     # train_folder = pathlib.Path(sys.argv[1])
     # config = read_config(train_folder / 'config.yml')
     
     # Make outputs paths
-    if not(parent_output.exists()):
-        parent_output.mkdir()
+    # if not(parent_output.exists()):
+    #     parent_output.mkdir()
 
-    output_path = parent_output
-    output_path /= pathlib.Path(config['output'].get('folder', train_folder))
+    # output_path = parent_output
+    output_path = pathlib.Path(config['output'].get('folder', train_folder))
     if not(output_path.exists()):
         output_path.mkdir()
 
@@ -356,5 +356,5 @@ if __name__ == '__main__' :
     
     train_from_config(
         config = config,
-        parent_output = pathlib.Path('.')
+        train_folder = train_folder
     )
