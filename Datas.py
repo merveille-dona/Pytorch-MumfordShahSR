@@ -102,7 +102,6 @@ def split_dataset(dataset: torch.utils.data.Dataset, train_size: float) -> tuple
 
 
 def get_batch_with_variable_size_image(batch):
-    print(type(batch))
 
     imgs_input = []
     imgs_ground_truth = []
