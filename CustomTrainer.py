@@ -118,7 +118,7 @@ def save_epoch_loss(engine: CustomEngine, path: pathlib.Path) -> None:
 
 def print_logs(engine: CustomEngine):
     strp = 'Epoch [{}/{}] : Loss {:.6f}'
-    epoch_loss = engine.epoch_loss_history[engine.state.epoch]
+    epoch_loss = engine.epoch_loss_history[engine.state.epoch-1]
     print(
         strp.format(
             engine.state.epoch,
