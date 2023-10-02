@@ -48,49 +48,8 @@ class ImageDataset(torch.utils.data.Dataset):
     def __len__(self) -> int:
         return len(self.items)
 
-    def __getitem__(self, index) -> tuple[torch.Tensor, torch.Tensor]:
+    def __getitem__(self, index) -> tuple[torch.Tensor, torch.Tensor, str]:
         return self.items[index]
-
-
-
-# class ImageDataset2(torch.utils.data.Dataset):
-
-#     def __init__(self, data_path: pathlib.Path, device: torch.device) -> None:
-#         """
-#         Args:
-#             root_dir (pathlib.Path): Directory with all the images.
-#         """
-#         super(ImageDataset, self).__init__()
-        
-#         data_path: pathlib.Path = data_path
-            
-#         input_path = data_path / 'input'
-#         ground_truth_path = data_path / 'ground_truth'
-
-#         self.items: list[tuple[torch.Tensor, torch.Tensor]] = []
-
-
-#         zipped = zip(input_path.iterdir(), ground_truth_path.iterdir())
-#         for img_input_path, img_ground_truth_path in zipped:
-
-#             #filename = img_input_path.name #filename with extension file
-#             filename = img_input_path.stem #filename without extension file
-            
-#             # Load imgs
-#             img_input = torch.tensor(numpy.load(img_input_path))
-#             img_ground_truth = torch.tensor(numpy.load(img_ground_truth_path))
-            
-#             # Move on datas device
-#             img_input = img_input.to(device, dtype=torch.float)
-#             img_ground_truth = img_ground_truth.to(device, dtype=torch.float)
-            
-#             self.items.append((img_input.unsqueeze(0), img_ground_truth.unsqueeze(0), filename))
-
-#     def __len__(self) -> int:
-#         return len(self.items)
-
-#     def __getitem__(self, index) -> tuple[torch.Tensor, torch.Tensor]:
-#         return self.items[index]
 
 
 def split_dataset(dataset: torch.utils.data.Dataset, train_size: float) -> tuple[torch.utils.data.Dataset, torch.utils.data.Dataset]:
