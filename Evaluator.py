@@ -174,19 +174,20 @@ def create_evaluate_function_with_variable_size_image(
                 # results[i] = y.to(datas_device, non_blocking=True)
 
             # Move prediction on datas device for Evaluator
-            # predictions = torch.concat(predictions, axis=0)
+              predictions = torch.concat(predictions, axis=0)
             # predictions = predictions.to(datas_device, non_blocking=True)
 
             # Batch return on datas device
             # inputs = inputs.to(datas_device, non_blocking=True)
             # results = results.to(datas_device, non_blocking=True)
+              results = torch.stack(results)
 
             output = {
                 'prediction' : predictions, 
                 'result' : results
             }
 
-            return output
+            return predictions,results
 
     return eval_step
 
