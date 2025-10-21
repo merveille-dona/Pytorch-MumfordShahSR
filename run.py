@@ -400,9 +400,8 @@ def train_from_config(
     
     # Make Trainer
     
-    output_transform = \
-        lambda output: (output['prediction'], output['result'])
-
+    output_transform = lambda output: (output[0], output[1])
+    
     # model = Model.Unfolding(nb_channel, kernel_size, nb_iteration)
     model = Model.Unfolding.from_config(config)
 
@@ -534,26 +533,26 @@ def train_from_config(
     #)
 
     ## Evaluation on datas using for training
-    trainer.add_event_handler(
-        ignite.engine.Events.EPOCH_COMPLETED,
+    #trainer.add_event_handler(
+        # ignite.engine.Events.EPOCH_COMPLETED,
         # Callback
-        Evaluator.update_history_metrics,
+        # Evaluator.update_history_metrics,
         # Parameters of callback
-        evaluator, 
-        dataloader_train, 
-        training_history
-    )
+        # evaluator, 
+        # dataloader_train, 
+        # training_history
+    #)
 
     ## Evaluation on datas using for validation
-    trainer.add_event_handler(
-        ignite.engine.Events.EPOCH_COMPLETED,
+    #trainer.add_event_handler(
+     #   ignite.engine.Events.EPOCH_COMPLETED,
         # Callback
-        Evaluator.update_history_metrics,
+     #  Evaluator.update_history_metrics,
         # Parameters of callback
-        evaluator, 
-        dataloader_validation, 
-        validation_history
-    )
+     #   evaluator, 
+     #  dataloader_validation, 
+     #   validation_history
+    #)
     
     trainer.add_event_handler(
         ignite.engine.Events.EPOCH_COMPLETED(every=imgs_save_every) 
